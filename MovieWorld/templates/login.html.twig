@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+{% block body %}
+    <form method="post" name="validate_user">
+        <div class="form-group">
+            <label for="userName">User name</label>
+            <input type="text" class="form-control" id="userName"  placeholder="User name" name="username">
+        </div>
+        <div class="form-group">
+            <label for="userPassword">Password</label>
+            <input type="password" class="form-control" id="userPassword" placeholder="Password" name="userpassword">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

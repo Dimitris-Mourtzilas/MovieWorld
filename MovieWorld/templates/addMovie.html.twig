@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <form action="/add" method="post">
+        <div class="form-group">
+            <label for="titleMovie">
+                Title
+            </label>
+            <br>
+        <input type="text" name="title" id="titleMovie" placeholder="Title" required>
+        </div>
+
+        <div class="form-group">
+            <label for="descMovie">
+                Description
+            </label>
+            <textarea class="form-control" id="descMovie" rows="3" placeholder="Description" name="desc"></textarea>
+        </div>
+
+<br>
+            <button type="submit" class="btn btn-primary">Add movie</button>
+    </form>
+
+
+{% endblock %}

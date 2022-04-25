@@ -1,19 +1,26 @@
+
 {% extends 'base.html.twig' %}
 
 
-
-
 {% block body %}
-    <form method="post" name="validate_user">
+
+    {% if messages is defined %}
+        <div class="alert alert-danger" role="alert">
+            {{ messages }}
+        </div>
+    {% endif %}
+    <form action="{{ path('validation') }}" method="post">
+
         <div class="form-group">
             <label for="userName">User name</label>
-            <input type="text" class="form-control" id="userName"  placeholder="User name" name="username">
-        </div>
-        <div class="form-group">
-            <label for="userPassword">Password</label>
-            <input type="password" class="form-control" id="userPassword" placeholder="Password" name="userpassword">
+        <input type="text" name="username" placeholder="User name" id="userName" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Password" id="password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
     </form>
 {% endblock %}

@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\Table(name="`user`")
  */
 class User
 {
@@ -21,11 +22,6 @@ class User
     /**
      * @ORM\Column(type="string", length=25)
      */
-    private $user_name;
-
-    /**
-     * @ORM\Column(type="string", length=25)
-     */
     private $first_name;
 
     /**
@@ -34,30 +30,33 @@ class User
     private $last_name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=15)
      */
-    private $password;
+    private $nick_name;
 
     /**
      * @ORM\Column(type="string", length=40)
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Movie::class, mappedBy="user")
+     */
+    private  $movies;
+
+    public function __construct()
+    {
+     $this->movies = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUserName(): ?string
-    {
-        return $this->user_name;
-    }
-
-    public function setUserName(string $user_name): self
-    {
-        $this->user_name = $user_name;
-
-        return $this;
     }
 
     public function getFirstName(): ?string
@@ -84,14 +83,14 @@ class User
         return $this;
     }
 
-    public function getPassword(): ?string
+    public function getNickName(): ?string
     {
-        return $this->password;
+        return $this->nick_name;
     }
 
-    public function setPassword(string $password): self
+    public function setNickName(string $nick_name): self
     {
-        $this->password = $password;
+        $this->nick_name = $nick_name;
 
         return $this;
     }
@@ -106,5 +105,29 @@ class User
         $this->email = $email;
 
         return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function addMovie(?Movie $movie):self{
+        if(!$this->movies->contains($movie)){
+            $this->movies[]= $movie;
+            $movie->setUser($this);
+        }
+        return $this;
+    }
+
+    public function getMovies():Collection{
+        return $this->movies;
     }
 }

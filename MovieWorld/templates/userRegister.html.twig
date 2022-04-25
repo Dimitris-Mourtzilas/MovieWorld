@@ -1,0 +1,46 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if message is defined %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <form action="{{ path('register_user') }}" method="post">
+        <div class="form-group">
+            <label for="userFirstName">First name</label>
+            <input type="text" class="form-control" id="userFirstName" placeholder="First name" name="firstName">
+
+        </div>
+        <div class="form-group">
+            <label for="userLastName">Last name</label>
+            <input type="text" class="form-control" id="userLastName" placeholder="Last name" name="lastName">
+        </div>
+
+        <div class="form-group">
+            <label for="username">User name</label>
+            <input type="text" class="form-control" id="username" placeholder="User name" name="userName">
+        </div>
+
+        <div class="form-group">
+            <label for="userPassword">Password</label>
+            <input type="password" class="form-control" id="userLastName" placeholder="Password" name="password">
+        </div>   <div class="form-group">
+
+            <label for="confirmPassword">Confirm password</label>
+            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" name="confirmPassword">
+
+        </div>
+        <div class="form-group">
+            <label for="userEmail">Email</label>
+            <input type="email" class="form-control" id="userEmail" placeholder="Email" name="email">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+{% endblock %}

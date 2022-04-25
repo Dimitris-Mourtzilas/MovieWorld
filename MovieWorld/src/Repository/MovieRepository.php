@@ -9,6 +9,8 @@ use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * @extends ServiceEntityRepository<Movie>
+ *
  * @method Movie|null find($id, $lockMode = null, $lockVersion = null)
  * @method Movie|null findOneBy(array $criteria, array $orderBy = null)
  * @method Movie[]    findAll()
@@ -73,4 +75,10 @@ class MovieRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function sortByDate(){
+        $this->createQueryBuilder('m')
+            ->orderBy('m.date_posted','ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -1,0 +1,53 @@
+
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
+{% endblock %}
+{% block body %}
+
+    <h1>Movie World</h1>
+    {% if first_name is defined and last_name is defined %}
+    <span>Welcome back {{ first_name }} {{ last_name }}</span>
+    {%  endif %}
+
+
+    {% for user in users %}
+        {% for movie in user.getMovies %}
+       <div class="movie-div">
+           <span class="movie-title">Title</span>
+            <br>
+            {{ movie.getTitle }}
+            <br>
+        <span class="movie-descr">Description</span>
+            <br>
+            {{ movie.getDescr }}
+            <br>
+        <br>
+           <span class="date-posted">Date posted</span> {{ movie.getDatePosted }}
+           <br>
+
+
+        <br>
+            {% if user.getId == id     %}
+                <span class="posted-user">Posted by you</span>
+            {% else %}
+                <span class="posted-user"> Posted by {{ user.getFirstName }} {{ user.getLastName }}</span>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+    {% endfor %}
+
+    <button type="button" class="btn btn-primary"><a href="{{ path('add_movie') }}" style="color:white;text-decoration:none">New movie</a></button>
+    <div class="sort-div">
+        <span class="sort-by-div">
+            Sort by
+        </span>
+        <a href="{{ path('sort_movies_by_date') }}">
+            Date
+        </a>
+    </div>
+
+{% endblock %}

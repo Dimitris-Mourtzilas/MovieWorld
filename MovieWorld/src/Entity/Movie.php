@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MovieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,56 +22,84 @@ class Movie
     /**
      * @ORM\Column(type="string", length=25)
      */
-    private $movie_title;
+    private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $movie_desc;
+    private $descr;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="movies",cascade={"persist"})
+     */
+    private $user;
+
+
+    /**
+     * @ORM\Column(type="string",length=255)
      */
     private $date_posted;
+
+    /**
+     * @return mixed
+     */
+    public function getDatePosted()
+    {
+        return $this->date_posted;
+    }
+
+    /**
+     * @param mixed $date_posted
+     */
+    public function setDatePosted($date_posted): void
+    {
+        $this->date_posted = $date_posted;
+    }
+    
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getMovieTitle(): ?string
+    public function getTitle(): ?string
     {
-        return $this->movie_title;
+        return $this->title;
     }
 
-    public function setMovieTitle(string $movie_title): self
+    public function setTitle(string $title): self
     {
-        $this->movie_title = $movie_title;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getMovieDesc(): ?string
+    public function getDescr(): ?string
     {
-        return $this->movie_desc;
+        return $this->descr;
     }
 
-    public function setMovieDesc(string $movie_desc): self
+    public function setDescr(string $descr): self
     {
-        $this->movie_desc = $movie_desc;
+        $this->descr = $descr;
 
         return $this;
     }
 
-    public function getDatePosted(): ?\DateTimeInterface
-    {
-        return $this->date_posted;
-    }
 
-    public function setDatePosted(\DateTimeInterface $date_posted): self
+
+    public function setHates(int $hates): self
     {
-        $this->date_posted = $date_posted;
+        $this->hates = $hates;
 
         return $this;
     }
+
+
+    public function setUser(?User $user):self{
+        $this->user = $user;
+        return $this;
+    }
+
 }

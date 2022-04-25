@@ -1,0 +1,28 @@
+
+.movie-counter-div{
+
+    font-family: Courier, Serif, serif;
+    font-size: 25px;
+    padding:10px;
+}
+
+.movie-div{
+    border:1px groove black;
+    border-radius:6px;
+    max-width:30%;
+    overflow: auto;
+    padding: 10px;
+    margin: 20px;
+}
+
+.movie-title, .movie-descr, .sort-by-div{
+    font-family:Vemana2000,sans-serif;
+    font-size:15px;
+}
+
+.sort-div{
+    position: absolute;
+    top:10.3%;
+    left:32%;
+    border-bottom: 1px groove black;
+}

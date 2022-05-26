@@ -8,4 +8,9 @@ Initially non-registered users have the option to view all available movies that
 
 Registered users also have the option to add new movies to the database while non-registered users do not have that option.
 
+# How to run the app
+Initially you need to open a code editor like PhpStorm, SublimeText,Visual Studio Code etc and start the symfony server by typing:
 
+                                              symfony server start
+                                              
+Once you've started the server you will have to navigate to the localhost:8000 which will show you the initial page of the app
